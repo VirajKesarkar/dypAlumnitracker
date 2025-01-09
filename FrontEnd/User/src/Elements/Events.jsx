@@ -54,11 +54,13 @@ const Events = () => {
         {/* Event Card 1 */}
         <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
           <div className="relative">
+            <a href="https://forms.gle/7RnAhph7HGsor4C6A">
             <img
               src="/rs/alumni-meet.jpg"
               alt="Alumni Meet"
               className="w-full h-48 object-cover rounded-lg shadow-md"
             />
+            </a>
           </div>
           <h3 className="text-2xl font-semibold text-blue-600 mt-4">Alumni Meet</h3>
           <p className="text-gray-600 mb-4">Reconnect with your peers and professors in this exciting Alumni Meet!</p>
@@ -71,11 +73,12 @@ const Events = () => {
         {/* Event Card 2 */}
         <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
           <div className="relative">
+            <a href="https://forms.gle/fJwmzFceca1Ct8YF6">
             <img
               src="/rs/tech-conference.jpg"
               alt="Tech Conference"
               className="w-full h-48 object-cover rounded-lg shadow-md"
-            />
+            /></a>
           </div>
           <h3 className="text-2xl font-semibold text-blue-600 mt-4">Tech Conference</h3>
           <p className="text-gray-600 mb-4">Explore the latest in technology trends, workshops, and networking with industry leaders.</p>
@@ -88,11 +91,13 @@ const Events = () => {
         {/* Event Card 3 */}
         <div className="bg-white p-6 rounded-lg shadow-lg transform hover:scale-105 transition-all duration-300 ease-in-out">
           <div className="relative">
+            <a href="https://forms.gle/3j3b5TS34AevQxzD9">
             <img
               src="/rs/hackathon.jpg"
               alt="Hackathon"
               className="w-full h-48 object-cover rounded-lg shadow-md"
             />
+            </a>
           </div>
           <h3 className="text-2xl font-semibold text-blue-600 mt-4">Hackathon</h3>
           <p className="text-gray-600 mb-4">Join the ultimate 24-hour coding challenge with exciting prizes and surprises!</p>
