@@ -1,13 +1,1 @@
-POST http://localhost:5000/jobs
-Content-Type: application/json
-
-{
-  "post": "Software Engineer",
-  "vacancies": 3,
-  "skills": "JavaScript, Node.js, React",
-  "degree": "B.Tech in Computer Science",
-  "cgpa": 8.5,
-  "alumni_name": "Viraj Kesarkar",
-  "company_name": "Tech Innovations Ltd.",
-  "contact_number": "1234567890"
-}
+curl -X GET "http://localhost:5000/api/search-alumni?query=Ajit" 

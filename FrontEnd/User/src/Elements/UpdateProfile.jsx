@@ -1,212 +1,194 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const UpdateProfile = () => {
+function UpdateProfile() {
   const [formData, setFormData] = useState({
-    firstName: '',
-    lastName: '',
-    email: '',
-    phone: '',
-    graduation: '',
-    course: '',
-    currentCompany: '',
-    position: '',
-    skills: '',
-    linkedIn: ''
+    first_name: "",
+    last_name: "",
+    email: "",
+    phoneno: "",
+    graduation_year: "",
+    course: "",
+    clerk_id: "",
+    current_company: "",
+    post: "",
+    skills: "",
+    linkedin_profile: ""
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
+    setFormData((prevData) => ({
+      ...prevData,
       [name]: value
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the data to your backend
-    console.log('Form submitted:', formData);
-    // Add your API call here
+
+    const response = await fetch("http://localhost:5000/alumni", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (response.ok) {
+      const result = await response.json();
+      alert("Your information is updated");
+      setFormData({
+        first_name: "",
+        last_name: "",
+        email: "",
+        phoneno: "",
+        graduation_year: "",
+        course: "",
+        clerk_id: "",
+        current_company: "",
+        post: "",
+        skills: "",
+        linkedin_profile: ""
+      });
+    } else {
+      alert("Failed to update your information. Please try again.");
+    }
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-6 text-gray-800">Update Profile</h2>
-      
+    <div className="max-w-4xl mx-auto p-8 bg-gray-100 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-semibold text-center text-gray-800 mb-6">Update Your Profile</h2>
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Personal Information */}
-        <div className="space-y-4">
-          <h3 className="text-xl font-semibold text-gray-700">Personal Information</h3>
-          
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                First Name
-              </label>
-              <input
-                type="text"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Last Name
-              </label>
-              <input
-                type="text"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Phone Number
-              </label>
-              <input
-                type="tel"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
-          </div>
+        <div className="flex flex-col">
+          <label className="text-lg font-medium text-gray-700 mb-2">First Name:</label>
+          <input
+            type="text"
+            name="first_name"
+            value={formData.first_name}
+            onChange={handleChange}
+            placeholder="Enter your first name"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
         </div>
-
-        {/* Academic Information */}
-        <div className="space-y-4">
-          <h3 className="text-xl font-semibold text-gray-700">Academic Information</h3>
-          
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Graduation Year
-              </label>
-              <input
-                type="text"
-                name="graduation"
-                value={formData.graduation}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Course
-              </label>
-              <input
-                type="text"
-                name="course"
-                value={formData.course}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                required
-              />
-            </div>
-          </div>
+        <div className="flex flex-col">
+          <label className="text-lg font-medium text-gray-700 mb-2">Last Name:</label>
+          <input
+            type="text"
+            name="last_name"
+            value={formData.last_name}
+            onChange={handleChange}
+            placeholder="Enter your last name"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
         </div>
-
-        {/* Professional Information */}
-        <div className="space-y-4">
-          <h3 className="text-xl font-semibold text-gray-700">Professional Information</h3>
-          
-          <div className="grid grid-cols-2 gap-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Current Company
-              </label>
-              <input
-                type="text"
-                name="currentCompany"
-                value={formData.currentCompany}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-            
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Position
-              </label>
-              <input
-                type="text"
-                name="position"
-                value={formData.position}
-                onChange={handleChange}
-                className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              Skills
-            </label>
-            <textarea
-              name="skills"
-              value={formData.skills}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              rows="3"
-              placeholder="Enter your skills (separated by commas)"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">
-              LinkedIn Profile
-            </label>
-            <input
-              type="url"
-              name="linkedIn"
-              value={formData.linkedIn}
-              onChange={handleChange}
-              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="https://linkedin.com/in/yourprofile"
-            />
-          </div>
+        <div className="flex flex-col">
+          <label className="text-lg font-medium text-gray-700 mb-2">Email:</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Enter your email"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
         </div>
-
-        {/* Submit Button */}
-        <div className="flex justify-end">
-          <button
-            type="submit"
-            className="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
-          >
-            Update Profile
-          </button>
+        <div className="flex flex-col">
+          <label className="text-lg font-medium text-gray-700 mb-2">Phone Number:</label>
+          <input
+            type="text"
+            name="phoneno"
+            value={formData.phoneno}
+            onChange={handleChange}
+            placeholder="Enter your phone number"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
         </div>
+        <div className="flex flex-col">
+          <label className="text-lg font-medium text-gray-700 mb-2">Graduation Year:</label>
+          <input
+            type="number"
+            name="graduation_year"
+            value={formData.graduation_year}
+            onChange={handleChange}
+            placeholder="Enter your graduation year"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label className="text-lg font-medium text-gray-700 mb-2">Course:</label>
+          <input
+            type="text"
+            name="course"
+            value={formData.course}
+            onChange={handleChange}
+            placeholder="Enter your course"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label className="text-lg font-medium text-gray-700 mb-2">Clerk ID:</label>
+          <input
+            type="text"
+            name="clerk_id"
+            value={formData.clerk_id}
+            onChange={handleChange}
+            placeholder="Enter your clerk ID"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label className="text-lg font-medium text-gray-700 mb-2">Current Company:</label>
+          <input
+            type="text"
+            name="current_company"
+            value={formData.current_company}
+            onChange={handleChange}
+            placeholder="Enter your current company"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label className="text-lg font-medium text-gray-700 mb-2">Position:</label>
+          <input
+            type="text"
+            name="post"
+            value={formData.post}
+            onChange={handleChange}
+            placeholder="Enter your position"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label className="text-lg font-medium text-gray-700 mb-2">Skills:</label>
+          <input
+            type="text"
+            name="skills"
+            value={formData.skills}
+            onChange={handleChange}
+            placeholder="Enter your skills (separated by commas)"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <div className="flex flex-col">
+          <label className="text-lg font-medium text-gray-700 mb-2">LinkedIn Profile:</label>
+          <input
+            type="url"
+            name="linkedin_profile"
+            value={formData.linkedin_profile}
+            onChange={handleChange}
+            placeholder="Enter your LinkedIn profile URL"
+            className="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+          />
+        </div>
+        <button
+          type="submit"
+          className="w-full py-3 mt-6 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+        >
+          Update Information
+        </button>
       </form>
     </div>
   );
-};
+}
 
 export default UpdateProfile;
