@@ -1,1 +1,1 @@
-curl -X GET "http://localhost:5000/api/search-alumni?query=Ajit" 
+curl -X GET http://localhost:5000/api/

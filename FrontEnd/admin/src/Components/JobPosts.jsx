@@ -13,6 +13,7 @@ const JobPosts = () => {
           throw new Error('Failed to fetch job posts');
         }
         const data = await response.json();
+        console.log(data); // Log the API response to check the structure
         setJobs(data);
       } catch (err) {
         setError(err.message);
@@ -34,7 +35,7 @@ const JobPosts = () => {
         throw new Error('Failed to delete job post');
       }
 
-      setJobs(jobs.filter((job) => job.id !== id));
+      setJobs(jobs.filter((job) => job.id !== id)); // Remove job from the state
     } catch (err) {
       console.error(err.message);
       alert('Error deleting job post');

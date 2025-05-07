@@ -1,21 +1,23 @@
 {
+  
   "name": "project-01",
   "private": true,
   "version": "0.0.0",
   "proxy": "http://localhost:5000",
   "type": "module",
-  
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build"
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.15.0",
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "express-openid-connect": "^2.17.1",
+    "gh-pages": "^6.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.3.0",
